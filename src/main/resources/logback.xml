@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+	
+	<property name="HOME_LOG" value="logs/anonymisation.log"/>
+	<timestamp key="time" datePattern="yyyyMMdd'T'HHmmss"/>
+	
+    <!-- Stop output INFO at start -->
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+	
+	<appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${HOME_LOG}</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/anonymization.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>1GB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete old archived file -->
+			<totalSizeCap>10GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{ISO8601} %5p %c.%M:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+	
+	
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{ISO8601} - %m%n</pattern>
+		</layout>
+	</appender>
+	
+	<logger name="group.acensi.solutions.dbanonymiser" level="info" />
+	
+	<logger name="org.springframework.jdbc.datasource.DataSourceTransactionManager" level="debug" />
+	<logger name="org.springframework.jdbc.core.metadata.CallMetaDataProvider" level="debug" />
+	<logger name="org.springframework.jdbc.core.simple.SimpleJdbcCall" level="debug" />
+	<logger name="org.springframework.jdbc.core.metadata.CallMetaDataContext" level="debug" />
+	<logger name="org.springframework.jdbc.core.StatementCreatorUtils" level="trace" />
+	
+	<root level="warn">
+		<appender-ref ref="CONSOLE"/>
+		<appender-ref ref="FILE-ROLLING"/>
+	</root>
+</configuration>

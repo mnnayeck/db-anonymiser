@@ -1,0 +1,1225 @@
+{
+	"databases": [
+		{
+			"refId": "isupplier_db_activity",
+			"driverClassName": "org.postgresql.Driver",
+			"url": "jdbc:postgresql://localhost:5432/db_activity_report",
+			"username": "postgres",
+			"password": "mysecretpassword"
+		},
+		{
+			"refId": "isupplier_db_contract",
+			"driverClassName": "org.postgresql.Driver",
+			"url": "jdbc:postgresql://localhost:5432/db_contract",
+			"username": "postgres",
+			"password": "mysecretpassword"
+		},
+		{
+			"refId": "isupplier_db_enterprise",
+			"driverClassName": "org.postgresql.Driver",
+			"url": "jdbc:postgresql://localhost:5432/db_enterprise",
+			"username": "postgres",
+			"password": "mysecretpassword"
+		},
+		{
+			"refId": "isupplier_db_invoice",
+			"driverClassName": "org.postgresql.Driver",
+			"url": "jdbc:postgresql://localhost:5432/db_invoice",
+			"username": "postgres",
+			"password": "mysecretpassword"
+		},
+		{
+			"refId": "isupplier_db_legal_documents",
+			"driverClassName": "org.postgresql.Driver",
+			"url": "jdbc:postgresql://localhost:5432/db_legal_documents",
+			"username": "postgres",
+			"password": "mysecretpassword"
+		},
+		{
+			"refId": "isupplier_db_mailing",
+			"driverClassName": "org.postgresql.Driver",
+			"url": "jdbc:postgresql://localhost:5432/db_mailing",
+			"username": "postgres",
+			"password": "mysecretpassword"
+		},
+		{
+			"refId": "isupplier_db_marketplace",
+			"driverClassName": "org.postgresql.Driver",
+			"url": "jdbc:postgresql://localhost:5432/db_marketplace",
+			"username": "postgres",
+			"password": "mysecretpassword"
+		},
+		{
+			"refId": "isupplier_db_purchase_order",
+			"driverClassName": "org.postgresql.Driver",
+			"url": "jdbc:postgresql://localhost:5432/db_purchase_order",
+			"username": "postgres",
+			"password": "mysecretpassword"
+		},
+		{
+			"refId": "isupplier_db_request",
+			"driverClassName": "org.postgresql.Driver",
+			"url": "jdbc:postgresql://localhost:5432/db_request",
+			"username": "postgres",
+			"password": "mysecretpassword"
+		},
+		{
+			"refId": "isupplier_db_uaa",
+			"driverClassName": "org.postgresql.Driver",
+			"url": "jdbc:postgresql://localhost:5432/db_uaa",
+			"username": "postgres",
+			"password": "mysecretpassword"
+		}
+	],
+	"anonymisations": [
+		{
+			"tableName": "activity_sheet_entity",
+			"primaryKey": "id",
+			"columnName": "buyer_company_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "activity_sheet_entity",
+			"primaryKey": "id",
+			"columnName": "supplier_company_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "activity_sheet_entity",
+			"primaryKey": "id",
+			"columnName": "employee_name",
+			"anonymiser": "FULL_NAME",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "activity_sheet_entity",
+			"primaryKey": "id",
+			"columnName": "supplier_email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "activity_sheet_entity",
+			"primaryKey": "id",
+			"columnName": "employee_email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "activity_sheet_entity",
+			"primaryKey": "id",
+			"columnName": "project_manager_email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "activity_sheet_entity",
+			"primaryKey": "id",
+			"columnName": "project_name",
+			"anonymiser": "SIMPLE_NAME",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "fee_entity",
+			"primaryKey": "id",
+			"columnName": "buyer_company_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "fee_entity",
+			"primaryKey": "id",
+			"columnName": "project_name",
+			"anonymiser": "SIMPLE_NAME",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "fee_entity",
+			"primaryKey": "id",
+			"columnName": "supplier_company_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "fee_entity",
+			"primaryKey": "id",
+			"columnName": "employee_name",
+			"anonymiser": "FULL_NAME",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "fee_entity",
+			"primaryKey": "id",
+			"columnName": "supplier_email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "fee_entity",
+			"primaryKey": "id",
+			"columnName": "employee_email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "fee_entity",
+			"primaryKey": "id",
+			"columnName": "project_manager_email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "on_call_entity",
+			"primaryKey": "id",
+			"columnName": "buyer_company_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "on_call_entity",
+			"primaryKey": "id",
+			"columnName": "project_name",
+			"anonymiser": "SIMPLE_NAME",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "on_call_entity",
+			"primaryKey": "id",
+			"columnName": "supplier_company_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "on_call_entity",
+			"primaryKey": "id",
+			"columnName": "employee_name",
+			"anonymiser": "FULL_NAME",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "on_call_entity",
+			"primaryKey": "id",
+			"columnName": "supplier_email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "on_call_entity",
+			"primaryKey": "id",
+			"columnName": "employee_email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "on_call_entity",
+			"primaryKey": "id",
+			"columnName": "project_manager_email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "on_call_entity",
+			"primaryKey": "id",
+			"columnName": "validated_by",
+			"anonymiser": "SIMPLE_NAME",
+			"databaseRefId": "isupplier_db_activity"
+		},
+		{
+			"tableName": "contract_entity",
+			"primaryKey": "id",
+			"columnName": "buyer_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_contract"
+		},
+		{
+			"tableName": "contract_entity",
+			"primaryKey": "id",
+			"columnName": "supplier_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_contract"
+		},
+		{
+			"tableName": "contract_entity",
+			"primaryKey": "id",
+			"columnName": "sent_to",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_contract"
+		},
+		{
+			"tableName": "contract_entity",
+			"primaryKey": "id",
+			"columnName": "validated_by",
+			"anonymiser": "SIMPLE_NAME",
+			"databaseRefId": "isupplier_db_contract"
+		}
+		
+		
+		,
+		{
+			"tableName": "company",
+			"primaryKey": "id",
+			"columnName": "city",
+			"anonymiser": "CITY",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "company",
+			"primaryKey": "id",
+			"columnName": "post_code",
+			"anonymiser": "POST_CODE",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "company",
+			"primaryKey": "id",
+			"columnName": "street1",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "company",
+			"primaryKey": "id",
+			"columnName": "street2",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "company",
+			"primaryKey": "id",
+			"columnName": "bic_or_swift",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "company",
+			"primaryKey": "id",
+			"columnName": "iban",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "company",
+			"primaryKey": "id",
+			"columnName": "code_tiers",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "company",
+			"primaryKey": "id",
+			"columnName": "incorporation_number",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "company",
+			"primaryKey": "id",
+			"columnName": "name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "company",
+			"primaryKey": "id",
+			"columnName": "phone_number",
+			"anonymiser": "PHONE_NUMBER",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "company",
+			"primaryKey": "id",
+			"columnName": "registration_city",
+			"anonymiser": "CITY",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "company",
+			"primaryKey": "id",
+			"columnName": "registration_number",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "company",
+			"primaryKey": "id",
+			"columnName": "vat_number",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "employee_entity",
+			"primaryKey": "id",
+			"columnName": "city",
+			"anonymiser": "CITY",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "employee_entity",
+			"primaryKey": "id",
+			"columnName": "post_code",
+			"anonymiser": "POST_CODE",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "employee_entity",
+			"primaryKey": "id",
+			"columnName": "street1",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "employee_entity",
+			"primaryKey": "id",
+			"columnName": "street2",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "employee_entity",
+			"primaryKey": "id",
+			"columnName": "personal_phone_number",
+			"anonymiser": "PHONE_NUMBER",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "employee_entity",
+			"primaryKey": "id",
+			"columnName": "work_phone_number",
+			"anonymiser": "PHONE_NUMBER",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "employee_entity",
+			"primaryKey": "id",
+			"columnName": "email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "employee_entity",
+			"primaryKey": "id",
+			"columnName": "first_name",
+			"anonymiser": "FIRST_NAME",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "employee_entity",
+			"primaryKey": "id",
+			"columnName": "last_name",
+			"anonymiser": "LAST_NAME",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
+		{
+			"tableName": "billable_company",
+			"primaryKey": "id",
+			"columnName": "city",
+			"anonymiser": "CITY",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "billable_company",
+			"primaryKey": "id",
+			"columnName": "post_code",
+			"anonymiser": "POST_CODE",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "billable_company",
+			"primaryKey": "id",
+			"columnName": "street1",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "billable_company",
+			"primaryKey": "id",
+			"columnName": "street2",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "billable_company",
+			"primaryKey": "id",
+			"columnName": "bic_or_swift",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "billable_company",
+			"primaryKey": "id",
+			"columnName": "iban",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "billable_company",
+			"primaryKey": "id",
+			"columnName": "incorporation_number",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "billable_company",
+			"primaryKey": "id",
+			"columnName": "name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "billable_company",
+			"primaryKey": "id",
+			"columnName": "phone_number",
+			"anonymiser": "PHONE_NUMBER",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "billable_company",
+			"primaryKey": "id",
+			"columnName": "registration_city",
+			"anonymiser": "CITY",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "billable_company",
+			"primaryKey": "id",
+			"columnName": "registration_number",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "billable_company",
+			"primaryKey": "id",
+			"columnName": "vat_number",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "phone_number",
+			"anonymiser": "PHONE_NUMBER",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "first_party_city",
+			"anonymiser": "CITY",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "first_party_post_code",
+			"anonymiser": "POST_CODE",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "first_party_street1",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "first_party_street2",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "second_party_street1",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "second_party_street2",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "first_party_bic_or_swift",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "first_party_iban",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "first_party_incorporation_number",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "second_party_incorporation_number",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "phone_number",
+			"anonymiser": "PHONE_NUMBER",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "first_party_registration_city",
+			"anonymiser": "CITY",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "second_party_registration_city",
+			"anonymiser": "CITY",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "first_party_registration_number",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "second_party_registration_number",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "first_party_vat_number",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "second_party_vat_number",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "first_party_code_tiers",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "second_party_code_tiers",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "first_party_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "second_party_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "second_party_city",
+			"anonymiser": "CITY",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "credit_note",
+			"primaryKey": "id",
+			"columnName": "second_party_post_code",
+			"anonymiser": "POST_CODE",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_client_invoice",
+			"primaryKey": "id",
+			"columnName": "vat_number",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "billable_company_city",
+			"anonymiser": "CITY",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "billable_company_post_code",
+			"anonymiser": "POST_CODE",
+			"databaseRefId": "isupplier_db_invoice"
+		},		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "billable_company_street1",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "billable_company_street2",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "billable_company_bic_or_swift",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "billable_company_iban",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "billable_company_incorporation_number",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "billable_company_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "billable_company_registration_city",
+			"anonymiser": "CITY",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "billable_company_registration_number",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "billable_companyvatnumber",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "buyer_city",
+			"anonymiser": "CITY",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "buyer_post_code",
+			"anonymiser": "POST_CODE",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "buyer_street1",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "buyer_street2",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "buyer_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "provider_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "supplier_city",
+			"anonymiser": "CITY",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "supplier_post_code",
+			"anonymiser": "POST_CODE",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "supplier_street1",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "supplier_street2",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "supplier_bic_or_swift",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "supplier_iban",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "supplier_registration_city",
+			"anonymiser": "CITY",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "supplier_registration_number",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "supplier_vat_number",
+			"anonymiser": "ALPHANUM",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "supplier_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "buyer_code_tiers",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "new_invoice",
+			"primaryKey": "id",
+			"columnName": "buyer_code_tiers",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_invoice"
+		},
+		{
+			"tableName": "legal_document",
+			"primaryKey": "id",
+			"columnName": "company_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_legal_documents"
+		},
+		{
+			"tableName": "is_message",
+			"primaryKey": "id",
+			"columnName": "bcc",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_mailing"
+		},
+		{
+			"tableName": "is_message",
+			"primaryKey": "id",
+			"columnName": "cc",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_mailing"
+		},
+		{
+			"tableName": "is_message",
+			"primaryKey": "id",
+			"columnName": "from_mail",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_mailing"
+		},
+		{
+			"tableName": "is_message",
+			"primaryKey": "id",
+			"columnName": "to_mail",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_mailing"
+		},
+		{
+			"tableName": "call_for_tender",
+			"primaryKey": "id",
+			"columnName": "buyer_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "call_for_tender",
+			"primaryKey": "id",
+			"columnName": "city",
+			"anonymiser": "CITY",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "call_for_tender",
+			"primaryKey": "id",
+			"columnName": "post_code",
+			"anonymiser": "POST_CODE",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "call_for_tender",
+			"primaryKey": "id",
+			"columnName": "street1",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "call_for_tender",
+			"primaryKey": "id",
+			"columnName": "street2",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "offer",
+			"primaryKey": "id",
+			"columnName": "supplier_email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "offer",
+			"primaryKey": "id",
+			"columnName": "supplier_first_name",
+			"anonymiser": "FIRST_NAME",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "offer",
+			"primaryKey": "id",
+			"columnName": "supplier_last_name",
+			"anonymiser": "LAST_NAME",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "offer",
+			"primaryKey": "id",
+			"columnName": "supplier_phone_number",
+			"anonymiser": "PHONE_NUMBER",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "offer",
+			"primaryKey": "id",
+			"columnName": "supplier_name",
+			"anonymiser": "FULL_NAME",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "offer",
+			"primaryKey": "id",
+			"columnName": "provider_first_name",
+			"anonymiser": "FIRST_NAME",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "offer",
+			"primaryKey": "id",
+			"columnName": "provider_last_name",
+			"anonymiser": "LAST_NAME",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "suppliers",
+			"primaryKey": "id",
+			"columnName": "name",
+			"anonymiser": "FULL_NAME",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "suppliers",
+			"primaryKey": "id",
+			"columnName": "email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "suppliers",
+			"primaryKey": "id",
+			"columnName": "first_name",
+			"anonymiser": "FIRST_NAME",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "suppliers",
+			"primaryKey": "id",
+			"columnName": "last_name",
+			"anonymiser": "LAST_NAME",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "suppliers",
+			"primaryKey": "id",
+			"columnName": "phone_number",
+			"anonymiser": "PHONE_NUMBER",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "watch_list",
+			"primaryKey": "call_for_tender_id",
+			"columnName": "email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_marketplace"
+		},
+		{
+			"tableName": "purchase_order",
+			"primaryKey": "id",
+			"columnName": "billable_company",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_purchase_order"
+		},
+		{
+			"tableName": "purchase_order",
+			"primaryKey": "id",
+			"columnName": "buyer_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_purchase_order"
+		},
+		{
+			"tableName": "purchase_order",
+			"primaryKey": "id",
+			"columnName": "supplier_admin_email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_purchase_order"
+		},
+		{
+			"tableName": "purchase_order",
+			"primaryKey": "id",
+			"columnName": "supplier_admin_name",
+			"anonymiser": "FULL_NAME",
+			"databaseRefId": "isupplier_db_purchase_order"
+		},
+		{
+			"tableName": "purchase_order",
+			"primaryKey": "id",
+			"columnName": "supplier_name",
+			"anonymiser": "FULL_NAME",
+			"databaseRefId": "isupplier_db_purchase_order"
+		},
+		{
+			"tableName": "project_entity",
+			"primaryKey": "id",
+			"columnName": "project_manager_email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "project_entity",
+			"primaryKey": "id",
+			"columnName": "project_manager_first_name",
+			"anonymiser": "FIRST_NAME",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "project_entity",
+			"primaryKey": "id",
+			"columnName": "project_manager_last_name",
+			"anonymiser": "LAST_NAME",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "project_entity",
+			"primaryKey": "id",
+			"columnName": "project_manager_phone_number",
+			"anonymiser": "PHONE_NUMBER",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "project_entity",
+			"primaryKey": "id",
+			"columnName": "project_name",
+			"anonymiser": "SIMPLE_NAME",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "provider_entity",
+			"primaryKey": "id",
+			"columnName": "city",
+			"anonymiser": "CITY",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "provider_entity",
+			"primaryKey": "id",
+			"columnName": "post_code",
+			"anonymiser": "POST_CODE",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "provider_entity",
+			"primaryKey": "id",
+			"columnName": "street1",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "provider_entity",
+			"primaryKey": "id",
+			"columnName": "street2",
+			"anonymiser": "STREET_NAME",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "provider_entity",
+			"primaryKey": "id",
+			"columnName": "email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "provider_entity",
+			"primaryKey": "id",
+			"columnName": "first_name",
+			"anonymiser": "FIRST_NAME",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "provider_entity",
+			"primaryKey": "id",
+			"columnName": "last_name",
+			"anonymiser": "LAST_NAME",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "provider_entity",
+			"primaryKey": "id",
+			"columnName": "phone_number",
+			"anonymiser": "PHONE_NUMBER",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "request_entity",
+			"primaryKey": "id",
+			"columnName": "buyer_name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "supplier_entity",
+			"primaryKey": "id",
+			"columnName": "name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "supplier_entity",
+			"primaryKey": "id",
+			"columnName": "email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "supplier_entity",
+			"primaryKey": "id",
+			"columnName": "first_name",
+			"anonymiser": "FIRST_NAME",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "supplier_entity",
+			"primaryKey": "id",
+			"columnName": "last_name",
+			"anonymiser": "LAST_NAME",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "supplier_entity",
+			"primaryKey": "id",
+			"columnName": "phone_number",
+			"anonymiser": "PHONE_NUMBER",
+			"databaseRefId": "isupplier_db_request"
+		},
+		{
+			"tableName": "is_user",
+			"primaryKey": "id",
+			"columnName": "email",
+			"anonymiser": "EMAIL",
+			"databaseRefId": "isupplier_db_uaa"
+		},
+		{
+			"tableName": "is_user",
+			"primaryKey": "id",
+			"columnName": "first_name",
+			"anonymiser": "FIRST_NAME",
+			"databaseRefId": "isupplier_db_uaa"
+		},
+		{
+			"tableName": "is_user",
+			"primaryKey": "id",
+			"columnName": "last_name",
+			"anonymiser": "LAST_NAME",
+			"databaseRefId": "isupplier_db_uaa"
+		}
+	]	
+}

@@ -1,0 +1,91 @@
+{
+    "databases": [{
+            "refId": "isupplier_db_activity",
+            "driverClassName": "org.postgresql.Driver",
+            "url": "jdbc:postgresql://localhost:5432/db_activity_report",
+            "username": "postgres",
+			"password": "mysecretpassword"
+        },
+        {
+            "refId": "isupplier_db_contract",
+            "driverClassName": "org.postgresql.Driver",
+            "url": "jdbc:postgresql://localhost:5432/db_contract",
+            "username": "postgres",
+			"password": "mysecretpassword"
+        }
+    ],
+    "anonymisations": [{
+            "tableName": "activity_sheet_entity",
+            "columnName": "created_by",
+            "anonymiser": "SIMPLE_NAME",
+            "databaseRefId": "isupplier_db_activity"
+        },
+        {
+            "tableName": "activity_sheet_entity",
+            "columnName": "modified_by",
+            "anonymiser": "SIMPLE_NAME",
+            "databaseRefId": "isupplier_db_activity"
+        },
+        {
+            "tableName": "activity_sheet_entity",
+            "columnName": "buyer_company_name",
+            "anonymiser": "COMPANY_NAME",
+            "databaseRefId": "isupplier_db_activity"
+        },
+        {
+            "tableName": "activity_sheet_entity",
+            "columnName": "supplier_company_name",
+            "anonymiser": "COMPANY_NAME",
+            "databaseRefId": "isupplier_db_activity"
+        },
+        {
+            "tableName": "activity_sheet_entity",
+            "columnName": "employee_name",
+            "anonymiser": "FULL_NAME",
+            "databaseRefId": "isupplier_db_activity"
+        },
+        {
+            "tableName": "activity_sheet_entity",
+            "columnName": "supplier_email",
+            "anonymiser": "EMAIL",
+            "databaseRefId": "isupplier_db_activity"
+        },
+        {
+            "tableName": "activity_sheet_entity",
+            "columnName": "employee_email",
+            "anonymiser": "EMAIL",
+            "databaseRefId": "isupplier_db_activity"
+        },
+        {
+            "tableName": "activity_sheet_entity",
+            "columnName": "project_manager_email",
+            "anonymiser": "EMAIL",
+            "databaseRefId": "isupplier_db_activity"
+        },
+        {
+            "tableName": "contract_entity",
+            "columnName": "created_by",
+            "anonymiser": "SIMPLE_NAME",
+            "databaseRefId": "isupplier_db_contract"
+        },
+        {
+            "tableName": "contract_entity",
+            "columnName": "modified_by",
+            "anonymiser": "SIMPLE_NAME",
+            "databaseRefId": "isupplier_db_contract"
+        },
+        {
+            "tableName": "contract_entity",
+            "columnName": "buyer_name",
+            "anonymiser": "COMPANY_NAME",
+            "databaseRefId": "isupplier_db_contract"
+        },
+        {
+            "tableName": "contract_entity",
+            "columnName": "sent_to",
+            "anonymiser": "EMAIL",
+            "databaseRefId": "isupplier_db_contract"
+        }
+    ]
+
+}
