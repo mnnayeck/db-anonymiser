@@ -3,20 +3,17 @@
  */
 package group.acensi.solutions.dbanonymiser;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.nio.charset.StandardCharsets;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.stream.Stream;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +21,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import com.ctc.wstx.util.StringUtil;
-
 import group.acensi.solutions.dbanonymiser.configuration.Anonymisation;
+import group.acensi.solutions.dbanonymiser.dao.FileSqlStatementDaoImpl;
+import group.acensi.solutions.dbanonymiser.dao.SqlStatementDao;
 
 /**
  * 
@@ -34,8 +31,8 @@ import group.acensi.solutions.dbanonymiser.configuration.Anonymisation;
 public class AnonymizationServiceImpl implements AnonymisationService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(AnonymizationServiceImpl.class);
-	private Map<String, JdbcTemplate> databaseJdbcTemplatesList = new HashMap<>();
-	private Map<String, File> sqlFiles = new HashMap<>();
+	private Map<String, JdbcTemplate> databaseJdbcTemplatesList = new HashMap<>();	
+	private SqlStatementDao sqlStatementDao = new FileSqlStatementDaoImpl();
 	
 	
 	/**
@@ -43,34 +40,15 @@ public class AnonymizationServiceImpl implements AnonymisationService {
 	 * @throws IOException 
 	 */
 	public AnonymizationServiceImpl(Map<String, DriverManagerDataSource> databaseConnectionMap) throws IOException {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm");
-		File folder = new File(simpleDateFormat.format(new Date()));
-		if (!folder.exists()) {
-			folder.mkdirs();
-		}
-		LOGGER.info("Using results folder: {}", folder.getAbsolutePath());
+	
 		for (Entry<String, DriverManagerDataSource> dataSourceEntry : databaseConnectionMap.entrySet()) {
 			JdbcTemplate template = new JdbcTemplate(dataSourceEntry.getValue());
 			template.afterPropertiesSet();
 			this.databaseJdbcTemplatesList.put(dataSourceEntry.getKey(), template);
-			sqlFiles.put(dataSourceEntry.getKey(), this.createFile(folder, dataSourceEntry.getKey()));
+			sqlStatementDao.addStore(dataSourceEntry.getKey());
 		}
 	}
 
-	/**
-	 * @param folder 
-	 * @param key
-	 * @return
-	 * @throws IOException 
-	 */
-	private File createFile(File folder, String key) throws IOException {
-		File file = new File(folder, key + ".sql");
-		if (file.exists()) {
-			LOGGER.info("Deleting existing file: {}", file.getAbsolutePath());
-		}
-		file.createNewFile();
-		return file;
-	}
 
 	@Override
 	public void anonymize(Anonymisation anonymisation) {
@@ -82,18 +60,14 @@ public class AnonymizationServiceImpl implements AnonymisationService {
 			@Override
 			public void processRow(ResultSet rs) throws SQLException {
 				
-				while (rs.next()) {
-					Object value = rs.getObject(anonymisation.getColumnName());
-					Object primaryKey = rs.getObject(anonymisation.getPrimaryKey());
-					if (value == null) {
-						continue;
-					}
-					if (value instanceof String && StringUtils.isBlank((String)value)) {
-						continue;
-					}
-					doAnonymize(anonymisation, primaryKey, value);
+				Object value = rs.getObject(anonymisation.getColumnName());
+				Object primaryKey = rs.getObject(anonymisation.getPrimaryKey());
+				if (value == null
+						|| value instanceof String && StringUtils.isBlank((String)value)){
+					return;
 				}
-				
+
+				doAnonymize(anonymisation, primaryKey, value);
 				
 			}
 		});
@@ -112,29 +86,46 @@ public class AnonymizationServiceImpl implements AnonymisationService {
 			return;
 		}
 		Serializable anonymized = anonymizer.anonymize((Serializable) value);
-		File sqlFile = this.sqlFiles.get(anonymisation.getDatabaseRefId());
 		String updateString = "UPDATE "+anonymisation.getTableName()+" set "+anonymisation.getColumnName()+"='"+anonymized+"' where "+anonymisation.getPrimaryKey()+"="+primaryKey + ";" + System.lineSeparator();
-//		LOGGER.info("Update String: {}", updateString);
-		try {
-			FileUtils.write(sqlFile, updateString, StandardCharsets.UTF_8, true);
-		} catch (IOException ex) {
-			LOGGER.error("Error appending to file", ex);
-		}
+		
+		this.sqlStatementDao.persist(anonymisation.getDatabaseRefId(), updateString);
 	}
 
 	@Override
 	public void updateDb() throws IOException {
-		for(Entry<String, File> entry: this.sqlFiles.entrySet()) {
+		
+		Map<String, Stream<String>> fileMap = this.sqlStatementDao.getFileMap();
+		
+		for(Entry<String, Stream<String>> entry: fileMap.entrySet()) {
 			String fileName = entry.getKey();
-			File file = entry.getValue();
+			Stream<String> linesStream = entry.getValue();
 			JdbcTemplate template = this.databaseJdbcTemplatesList.get(fileName);
-			LOGGER.info("Executing SQLs in file {}", file.getAbsolutePath());
-			List<String> lines = FileUtils.readLines(file, StandardCharsets.UTF_8);
-			int count = 0;
-			for(String line: lines) {
-				template.execute(line);
-				LOGGER.info("Exeecuted {} out of {}", ++count, lines.size());
-			}
+
+			LOGGER.info("Executing SQLs in file {}", fileName);
+			
+			int[] index = {0}; // final not neccessary here if no other array is assigned
+			int[] count = {0}; // final not neccessary here if no other array is assigned
+			int totalCount = this.sqlStatementDao.countLines(fileName);
+			
+			final int batchSize = 5000;
+			
+			String[] statements = new String[batchSize];
+			
+			linesStream.forEach(line -> {
+//				template.execute(line);
+				
+				statements[index[0]++] = line;
+				count[0]++;
+				if (index[0] % batchSize == 0 || count[0] >= totalCount) { //log log after 100 lines
+					template.batchUpdate(Arrays.stream(statements).filter(Objects::nonNull).toArray(String[]::new));
+					LOGGER.info("Executed {} out of {}",(count[0]) , (totalCount));
+					for(int i=0; i<statements.length; i++) {
+						statements[i] = null;
+					}
+					index[0] = 0;
+				}
+            });
+			linesStream.close();
 		}
 		
 	}

@@ -14,7 +14,6 @@ import java.security.MessageDigest;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.SerializationUtils;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import group.acensi.solutions.dbanonymiser.cache.CacheManager;

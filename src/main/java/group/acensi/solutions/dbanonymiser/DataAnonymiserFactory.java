@@ -45,7 +45,7 @@ public abstract class DataAnonymiserFactory {
 	 * @param anonymizer
 	 * @return
 	 */
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static DataAnonymiser<Serializable> create(String anonymizer) {
 		
 		

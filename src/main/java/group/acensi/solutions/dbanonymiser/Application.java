@@ -51,7 +51,9 @@ public class Application {
 		
 		for(Anonymisation anonymisation: configuration.getAnonymisations()) {
 			long start = System.currentTimeMillis();
-			LOGGER.info("Executing anonymisation for {}", anonymisation.toString());
+			if (LOGGER.isInfoEnabled()) {
+				LOGGER.info("Treating entry {}", anonymisation.toString());
+			}
 			anonymisationService.anonymize(anonymisation);
 			LOGGER.info("Generation of anonymised SQL for table '{}' and column '{}' in {} milliseconds", anonymisation.getTableName(), anonymisation.getColumnName(),  (System.currentTimeMillis() - start));
 		}
