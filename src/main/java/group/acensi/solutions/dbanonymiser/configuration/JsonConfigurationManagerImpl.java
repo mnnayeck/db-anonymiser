@@ -22,7 +22,7 @@ public class JsonConfigurationManagerImpl extends ConfigurationManager {
 	private Resource configFile;
 	
 	JsonConfigurationManagerImpl (Resource configFile) throws IOException {
-		LOGGER.info("Using Json Config file: {}", configFile.getURL());
+		LOGGER.info("Using Json Config file: {}", configFile.getURI());
 		this.configFile = configFile;
 		this.load();
 	}
@@ -30,7 +30,8 @@ public class JsonConfigurationManagerImpl extends ConfigurationManager {
 	protected Configuration load()  {
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {
-			return objectMapper.readValue(this.configFile.getFile(), Configuration.class);
+			
+			return objectMapper.readValue(this.configFile.getInputStream(), Configuration.class);
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}

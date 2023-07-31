@@ -10,6 +10,9 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -23,15 +26,23 @@ import group.acensi.solutions.dbanonymiser.configuration.Database;
  * @author Nadeem
  *
  */
-public class Application {
+@SpringBootApplication
+public class DBAnonynmizerApplication {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(DBAnonynmizerApplication.class);
+	
+	public static void main(String[] args) {
+		
+		SpringApplication.run(DBAnonynmizerApplication.class, args);
+	}
+
 
 	/**
 	 * @param args
 	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws IOException {
+	@Bean
+	public int run() throws IOException {
 		
 		long totalStart = System.currentTimeMillis();
 		
@@ -60,6 +71,7 @@ public class Application {
 		
 		anonymisationService.updateDb();
 		LOGGER.info("Total execution time: {} seconds", ((System.currentTimeMillis() - totalStart)/1000));
+		return 0;
 	}
 
 }
