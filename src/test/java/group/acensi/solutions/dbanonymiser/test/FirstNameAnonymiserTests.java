@@ -42,8 +42,8 @@ public class FirstNameAnonymiserTests {
 		logger.info("Before: {}, After: {}", name, result);
 		Assert.assertNotEquals(name, result);
 		Assert.assertEquals(StringUtils.countMatches(StringUtils.trim(name), ' '), StringUtils.countMatches(StringUtils.trim(result), ' '));
-		Assert.assertEquals(group.acensi.solutions.dbanonymiser.StringUtils.isAllUpperCase(name), 
-				group.acensi.solutions.dbanonymiser.StringUtils.isAllUpperCase(result));
+		Assert.assertEquals(group.acensi.solutions.dbanonymiser.util.StringUtils.isAllUpperCase(name), 
+				group.acensi.solutions.dbanonymiser.util.StringUtils.isAllUpperCase(result));
 	}
 
 }

@@ -5,13 +5,13 @@ package group.acensi.solutions.dbanonymiser.impl;
 
 import org.apache.commons.lang3.StringUtils;
 
-import group.acensi.solutions.dbanonymiser.DataAnonymiser;
+import group.acensi.solutions.dbanonymiser.service.DataAnonymiserService;
 
 /**
  * @author Nadeem
  *
  */
-public class LitteralValueAnonymiser extends DataAnonymiser<String> {
+public class LitteralValueAnonymiser extends DataAnonymiserService<String> {
 	
 
 	@Override

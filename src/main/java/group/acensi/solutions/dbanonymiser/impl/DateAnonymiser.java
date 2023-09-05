@@ -8,13 +8,13 @@ import java.util.Date;
 
 import com.github.javafaker.Faker;
 
-import group.acensi.solutions.dbanonymiser.DataAnonymiser;
+import group.acensi.solutions.dbanonymiser.service.DataAnonymiserService;
 
 /**
  * @author Nadeem
  *
  */
-public class DateAnonymiser extends DataAnonymiser<Date> {
+public class DateAnonymiser extends DataAnonymiserService<Date> {
 	
 	private Faker faker = new Faker();
 	

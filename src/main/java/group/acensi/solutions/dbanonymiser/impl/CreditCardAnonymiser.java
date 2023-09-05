@@ -6,13 +6,13 @@ package group.acensi.solutions.dbanonymiser.impl;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import group.acensi.solutions.dbanonymiser.DataAnonymiser;
+import group.acensi.solutions.dbanonymiser.service.DataAnonymiserService;
 
 /**
  * @author Nadeem
  *
  */
-public class CreditCardAnonymiser extends DataAnonymiser<String> {
+public class CreditCardAnonymiser extends DataAnonymiserService<String> {
 	
 	private int binLength=8;
 

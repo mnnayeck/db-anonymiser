@@ -1,13 +1,15 @@
 /**
  * 
  */
-package group.acensi.solutions.dbanonymiser.configuration;
+package group.acensi.solutions.dbanonymiser.bean;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Nadeem
  *
  */
-public class Anonymisation {
+public class Anonymisation implements Comparable<Anonymisation> {
 
 	private String tableName;
 	private String primaryKey;
@@ -89,6 +91,30 @@ public class Anonymisation {
 	public String toString() {
 		return "Anonymisation [tableName=" + this.tableName + ", primaryKey=" + this.primaryKey + ", columnName="
 				+ this.columnName + ", anonymiser=" + this.anonymiser + ", databaseRefId=" + this.databaseRefId + "]";
+	}
+
+	@Override
+	public int compareTo(Anonymisation o) {
+		return this.tableName.compareTo(o.tableName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (this.getClass() != obj.getClass()) {
+			return false;
+		}
+		Anonymisation object2 = (Anonymisation) obj;
+		return this.tableName.equalsIgnoreCase(object2.getTableName())
+				&& this.columnName.equalsIgnoreCase(object2.getColumnName())
+				&& this.anonymiser.equalsIgnoreCase(object2.getAnonymiser());
+	}
+
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this, false);
 	}
 
 }

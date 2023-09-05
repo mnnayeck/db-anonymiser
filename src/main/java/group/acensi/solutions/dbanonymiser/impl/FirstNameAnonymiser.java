@@ -8,13 +8,13 @@ import org.apache.commons.lang3.StringUtils;
 import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
 
-import group.acensi.solutions.dbanonymiser.DataAnonymiser;
+import group.acensi.solutions.dbanonymiser.service.DataAnonymiserService;
 
 /**
  * @author Nadeem
  *
  */
-public class FirstNameAnonymiser extends DataAnonymiser<String> {
+public class FirstNameAnonymiser extends DataAnonymiserService<String> {
 	
 	private Faker faker = new Faker();
 	private char spaceChar = ' ';
@@ -34,7 +34,7 @@ public class FirstNameAnonymiser extends DataAnonymiser<String> {
 			}
 		}
 
-		return group.acensi.solutions.dbanonymiser.StringUtils.convertToCorrectCase(source, builder);
+		return group.acensi.solutions.dbanonymiser.util.StringUtils.convertToCorrectCase(source, builder);
 
 	}
 	

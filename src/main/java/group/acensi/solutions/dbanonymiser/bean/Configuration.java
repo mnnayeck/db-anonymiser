@@ -1,7 +1,7 @@
 /**
  * 
  */
-package group.acensi.solutions.dbanonymiser.configuration;
+package group.acensi.solutions.dbanonymiser.bean;
 
 import java.util.List;
 
@@ -9,7 +9,9 @@ import java.util.List;
  * 
  */
 public class Configuration {
+
 	private List<Database> databases;
+	private List<Exclusion> exclusions;
 	private List<Anonymisation> anonymisations;
 
 	/**
@@ -39,4 +41,13 @@ public class Configuration {
 	public void setAnonymisations(List<Anonymisation> anonymisations) {
 		this.anonymisations = anonymisations;
 	}
+
+	public List<Exclusion> getExclusions() {
+		return exclusions;
+	}
+
+	public void setExclusions(List<Exclusion> exclusions) {
+		this.exclusions = exclusions;
+	}
+
 }

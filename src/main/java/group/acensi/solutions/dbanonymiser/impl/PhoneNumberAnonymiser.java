@@ -5,13 +5,13 @@ package group.acensi.solutions.dbanonymiser.impl;
 
 import org.apache.commons.lang3.StringUtils;
 
-import group.acensi.solutions.dbanonymiser.DataAnonymiser;
+import group.acensi.solutions.dbanonymiser.service.DataAnonymiserService;
 
 /**
  * @author Nadeem
  *
  */
-public class PhoneNumberAnonymiser extends DataAnonymiser<String> {
+public class PhoneNumberAnonymiser extends DataAnonymiserService<String> {
 	
 	private int prefixLength=5;
 	private static final char ANON = '0';

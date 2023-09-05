@@ -10,13 +10,13 @@ import org.apache.commons.lang3.StringUtils;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
 
-import group.acensi.solutions.dbanonymiser.DataAnonymiser;
+import group.acensi.solutions.dbanonymiser.service.DataAnonymiserService;
 
 /**
  * @author Nadeem
  *
  */
-public class EmailAnonymiser extends DataAnonymiser<String> {
+public class EmailAnonymiser extends DataAnonymiserService<String> {
 	
 	private FakeValuesService fakeValuesService = new FakeValuesService(Locale.ENGLISH, new RandomService());
 	private static final String ALPHA_REGEX = "?????";

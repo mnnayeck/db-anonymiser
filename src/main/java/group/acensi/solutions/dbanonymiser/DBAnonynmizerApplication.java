@@ -17,10 +17,12 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import group.acensi.solutions.dbanonymiser.configuration.Anonymisation;
-import group.acensi.solutions.dbanonymiser.configuration.Configuration;
+import group.acensi.solutions.dbanonymiser.bean.Anonymisation;
+import group.acensi.solutions.dbanonymiser.bean.Configuration;
+import group.acensi.solutions.dbanonymiser.bean.Database;
 import group.acensi.solutions.dbanonymiser.configuration.ConfigurationManager;
-import group.acensi.solutions.dbanonymiser.configuration.Database;
+import group.acensi.solutions.dbanonymiser.service.AnonymisationService;
+import group.acensi.solutions.dbanonymiser.service.AnonymizationServiceImpl;
 
 /**
  * @author Nadeem
@@ -42,7 +44,7 @@ public class DBAnonynmizerApplication {
 	 * @throws IOException 
 	 */
 	@Bean
-	public int run() throws IOException {
+	int run() throws IOException {
 		
 		long totalStart = System.currentTimeMillis();
 		
@@ -63,7 +65,7 @@ public class DBAnonynmizerApplication {
 		for(Anonymisation anonymisation: configuration.getAnonymisations()) {
 			long start = System.currentTimeMillis();
 			if (LOGGER.isInfoEnabled()) {
-				LOGGER.info("Treating entry {}", anonymisation.toString());
+				LOGGER.info("Treating entry {}", anonymisation);
 			}
 			anonymisationService.anonymize(anonymisation);
 			LOGGER.info("Generation of anonymised SQL for table '{}' and column '{}' in {} milliseconds", anonymisation.getTableName(), anonymisation.getColumnName(),  (System.currentTimeMillis() - start));

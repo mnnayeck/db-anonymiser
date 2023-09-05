@@ -1,11 +1,11 @@
 /**
  * 
  */
-package group.acensi.solutions.dbanonymiser;
+package group.acensi.solutions.dbanonymiser.service;
 
 import java.io.IOException;
 
-import group.acensi.solutions.dbanonymiser.configuration.Anonymisation;
+import group.acensi.solutions.dbanonymiser.bean.Anonymisation;
 
 /**
  * 

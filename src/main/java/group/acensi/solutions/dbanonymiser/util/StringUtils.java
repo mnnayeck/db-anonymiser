@@ -1,7 +1,7 @@
 /**
  * 
  */
-package group.acensi.solutions.dbanonymiser;
+package group.acensi.solutions.dbanonymiser.util;
 
 /**
  * @author Nadeem
@@ -25,8 +25,14 @@ public final class StringUtils {
 	 */
 	public static String convertToCorrectCase(String source, StringBuilder builder) {
 		String anonymized =  builder.toString().trim();
-		if (!org.apache.commons.lang3.StringUtils.isMixedCase(source)) {
+		if (org.apache.commons.lang3.StringUtils.isMixedCase(source)) {
+			anonymized = org.apache.commons.lang3.StringUtils.capitalize(anonymized);
+		}
+		else if (org.apache.commons.lang3.StringUtils.isAllUpperCase(source)) {
 			anonymized = org.apache.commons.lang3.StringUtils.upperCase(anonymized);
+		}
+		else if (org.apache.commons.lang3.StringUtils.isAllLowerCase(source)) {
+			anonymized = org.apache.commons.lang3.StringUtils.lowerCase(anonymized);
 		}
 		return anonymized;
 	}

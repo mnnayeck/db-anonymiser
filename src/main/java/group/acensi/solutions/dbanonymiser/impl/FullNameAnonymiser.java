@@ -40,7 +40,7 @@ public class FullNameAnonymiser extends CompanyNameAnonymiser {
 			builder.append(name.lastName());
 		}
 
-		return group.acensi.solutions.dbanonymiser.StringUtils.convertToCorrectCase(source, builder);
+		return group.acensi.solutions.dbanonymiser.util.StringUtils.convertToCorrectCase(source, builder);
 	}
 
 }

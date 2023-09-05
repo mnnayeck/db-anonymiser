@@ -6,7 +6,7 @@
  * Proprietary and confidential.
  *
  */
-package group.acensi.solutions.dbanonymiser;
+package group.acensi.solutions.dbanonymiser.service;
 
 import java.io.Serializable;
 import java.security.MessageDigest;
@@ -24,7 +24,7 @@ import group.acensi.solutions.dbanonymiser.cache.CacheManager;
  * @author Nadeem Nayeck <nadeem.nayeck@acensi.group>
  *
  */
-public abstract class DataAnonymiser<V extends Serializable> {
+public abstract class DataAnonymiserService<V extends Serializable> {
 	
 	private MessageDigest digest = DigestUtils.getSha256Digest();
 	

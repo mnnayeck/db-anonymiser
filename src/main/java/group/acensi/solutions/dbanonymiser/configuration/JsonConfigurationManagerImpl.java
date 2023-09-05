@@ -11,6 +11,8 @@ import org.springframework.core.io.Resource;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import group.acensi.solutions.dbanonymiser.bean.Configuration;
+
 /**
  * @author Nadeem
  *

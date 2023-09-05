@@ -26,7 +26,9 @@ public class NameAnonymiserTests {
 	public void testAnonymizerName1() throws Exception {
 		String name = "GUNNOO";
 		String result = nameAnonymizer.anonymize(name);
-		assertConditions(name, result);
+		logger.info("Before: {}, After: {}", name, result);
+		Assert.assertNotEquals(name, result);
+		Assert.assertEquals(StringUtils.isAllUpperCase(name), StringUtils.isAllUpperCase(result));
 	}
 	
 	@Test

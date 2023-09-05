@@ -1,7 +1,7 @@
 /**
  * 
  */
-package group.acensi.solutions.dbanonymiser.configuration;
+package group.acensi.solutions.dbanonymiser.bean;
 
 /**
  * @author Nadeem

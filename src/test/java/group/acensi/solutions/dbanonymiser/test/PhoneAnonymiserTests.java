@@ -9,8 +9,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import group.acensi.solutions.dbanonymiser.DataAnonymiser;
 import group.acensi.solutions.dbanonymiser.impl.PhoneNumberAnonymiser;
+import group.acensi.solutions.dbanonymiser.service.DataAnonymiserService;
 
 /**
  * @author Nadeem
@@ -20,7 +20,7 @@ public class PhoneAnonymiserTests {
 	
 	private static Logger logger = LoggerFactory.getLogger(PhoneAnonymiserTests.class);
 	
-	private DataAnonymiser<String> phoneAnonymizer = new PhoneNumberAnonymiser();
+	private DataAnonymiserService<String> phoneAnonymizer = new PhoneNumberAnonymiser();
 	
 	
 	@Test

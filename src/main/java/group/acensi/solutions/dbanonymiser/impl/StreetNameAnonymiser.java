@@ -5,13 +5,13 @@ package group.acensi.solutions.dbanonymiser.impl;
 
 import com.github.javafaker.Faker;
 
-import group.acensi.solutions.dbanonymiser.DataAnonymiser;
+import group.acensi.solutions.dbanonymiser.service.DataAnonymiserService;
 
 /**
  * @author Nadeem
  *
  */
-public class StreetNameAnonymiser extends DataAnonymiser<String> {
+public class StreetNameAnonymiser extends DataAnonymiserService<String> {
 	
 	private Faker faker = new Faker();
 

@@ -7,6 +7,8 @@ import java.io.IOException;
 
 import org.springframework.core.io.Resource;
 
+import group.acensi.solutions.dbanonymiser.bean.Configuration;
+
 /**
  * @author Nadeem
  *

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package group.acensi.solutions.dbanonymiser;
+package group.acensi.solutions.dbanonymiser.bean;
 
 import java.io.Serializable;
 
@@ -19,6 +19,7 @@ import group.acensi.solutions.dbanonymiser.impl.PhoneNumberAnonymiser;
 import group.acensi.solutions.dbanonymiser.impl.PostCodeAnonymiser;
 import group.acensi.solutions.dbanonymiser.impl.SimpleNameAnonymiser;
 import group.acensi.solutions.dbanonymiser.impl.StreetNameAnonymiser;
+import group.acensi.solutions.dbanonymiser.service.DataAnonymiserService;
 
 /**
  * 
@@ -46,55 +47,55 @@ public abstract class DataAnonymiserFactory {
 	 * @return
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static DataAnonymiser<Serializable> create(String anonymizer) {
+	public static DataAnonymiserService<Serializable> create(String anonymizer) {
 		
 		
-		DataAnonymiser dataAnonymiser = null;
+		DataAnonymiserService dataAnonymiserService = null;
 		
 		switch (anonymizer) {
 		case Anonymisers.COMPANY_NAME:
-			dataAnonymiser = COMPANY_NAME_ANONYMIZER;
+			dataAnonymiserService = COMPANY_NAME_ANONYMIZER;
 			break;
 		case Anonymisers.CREDIT_CARD:
-			dataAnonymiser = CREDIT_CARD_ANONYMIZER;
+			dataAnonymiserService = CREDIT_CARD_ANONYMIZER;
 			break;
 		case Anonymisers.DATE:
-			dataAnonymiser = DATE_ANONYMIZER;
+			dataAnonymiserService = DATE_ANONYMIZER;
 			break;
 		case Anonymisers.EMAIL:
-			dataAnonymiser = EMAIL_ANONYMIZER;
+			dataAnonymiserService = EMAIL_ANONYMIZER;
 			break;
 		case Anonymisers.FIRST_NAME:
-			dataAnonymiser = FIRST_NAME_ANONYMIZER;
+			dataAnonymiserService = FIRST_NAME_ANONYMIZER;
 			break;
 		case Anonymisers.FULL_NAME:
-			dataAnonymiser = FULL_NAME_ANONYMIZER;
+			dataAnonymiserService = FULL_NAME_ANONYMIZER;
 			break;
 		case Anonymisers.LAST_NAME:
-			dataAnonymiser = LAST_NAME_ANONYMIZER;
+			dataAnonymiserService = LAST_NAME_ANONYMIZER;
 			break;
 		case Anonymisers.PHONE_NUMBER:
-			dataAnonymiser = PHONE_NUMBER_ANONYMIZER;
+			dataAnonymiserService = PHONE_NUMBER_ANONYMIZER;
 			break;
 		case Anonymisers.SIMPLE_NAME:
-			dataAnonymiser = SIMPLE_NAME_ANONYMIZER;
+			dataAnonymiserService = SIMPLE_NAME_ANONYMIZER;
 			break;
 		case Anonymisers.CITY:
-			dataAnonymiser = CITY_NAME_ANONYMIZER;
+			dataAnonymiserService = CITY_NAME_ANONYMIZER;
 			break;
 		case Anonymisers.POST_CODE:
-			dataAnonymiser = POST_CODE_ANONYMIZER;
+			dataAnonymiserService = POST_CODE_ANONYMIZER;
 			break;
 		case Anonymisers.STREET_NAME:
-			dataAnonymiser = STREET_NAME_ANONYMIZER;
+			dataAnonymiserService = STREET_NAME_ANONYMIZER;
 			break;
 		case Anonymisers.ALPHANUM:
-			dataAnonymiser = ALPHANUMERIC_ANONYMIZER;
+			dataAnonymiserService = ALPHANUMERIC_ANONYMIZER;
 			break;
 		default:
 			break;
 		}
-		return dataAnonymiser;
+		return dataAnonymiserService;
 	}
 
 }

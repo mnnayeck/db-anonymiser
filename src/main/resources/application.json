@@ -71,6 +71,20 @@
 			"password": "mysecretpassword"
 		}
 	],
+	"exclusions" : [
+		{
+			"value": "ACENSI",
+			"exclusionType": "CONTAINS_IGNORE_CASE",
+			"targetTables": [],
+			"exclusionApplicationType": "ENTIRE_ROW"
+		},
+		{
+			"value": "ISUPPLIER",
+			"exclusionType": "CONTAINS_IGNORE_CASE",
+			"targetTables": [],
+			"exclusionApplicationType": "ENTIRE_ROW"
+		}
+	],
 	"anonymisations": [
 		{
 			"tableName": "activity_sheet_entity",

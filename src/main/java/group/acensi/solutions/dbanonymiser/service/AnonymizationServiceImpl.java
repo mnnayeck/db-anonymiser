@@ -1,7 +1,7 @@
 /**
  * 
  */
-package group.acensi.solutions.dbanonymiser;
+package group.acensi.solutions.dbanonymiser.service;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -21,7 +21,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import group.acensi.solutions.dbanonymiser.configuration.Anonymisation;
+import group.acensi.solutions.dbanonymiser.bean.Anonymisation;
+import group.acensi.solutions.dbanonymiser.bean.DataAnonymiserFactory;
 import group.acensi.solutions.dbanonymiser.dao.FileSqlStatementDaoImpl;
 import group.acensi.solutions.dbanonymiser.dao.SqlStatementDao;
 
@@ -80,7 +81,7 @@ public class AnonymizationServiceImpl implements AnonymisationService {
 	 * @return
 	 */
 	protected void doAnonymize(Anonymisation anonymisation, Object primaryKey, Object value) {
-		DataAnonymiser<Serializable> anonymizer = DataAnonymiserFactory.create(anonymisation.getAnonymiser());
+		DataAnonymiserService<Serializable> anonymizer = DataAnonymiserFactory.create(anonymisation.getAnonymiser());
 		if (anonymizer == null) {
 			LOGGER.error("No anonymizer of type {}", anonymisation.getAnonymiser());
 			return;
