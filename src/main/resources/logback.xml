@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xml>
-<configuration>
+<configuration debug="false">
 	
 	<property name="HOME_LOG" value="logs/anonymisation.log"/>
     
 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-		<layout class="ch.qos.logback.classic.PatternLayout">
-			<pattern>%d{ISO8601} %5p %c.%M:%L - %m%n</pattern>
-		</layout>
+		<encoder>
+			<pattern>%d{ISO8601} - %m%n</pattern>
+		</encoder>
 	</appender>
 	
 	<appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -26,7 +26,9 @@
 		</encoder>
 	</appender>
 	
-	<logger name="group.acensi.solutions.dbanonymiser" level="info" />
+	<logger name="com.github.mnnayeck.dbanonymiser" level="info" />
+	<logger name="ch.qos.logback" level="warn" />
+	<logger name="com.microsoft.sqlserver.jdbc.internals.TDS.Channel" level="error" />
 	
 	<root level="WARN">
 		<appender-ref ref="FILE-ROLLING"/>

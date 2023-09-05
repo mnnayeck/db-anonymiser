@@ -9,8 +9,8 @@
 		<version>3.1.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>group.acensi.solutions</groupId>
-	<artifactId>dbanonymizer</artifactId>
+	<groupId>com.github.mnnayeck</groupId>
+	<artifactId>dbanonymiser</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>anonymiser</name>
 
@@ -47,6 +47,12 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 		</dependency>
+		<dependency>
+		    <groupId>com.microsoft.sqlserver</groupId>
+		    <artifactId>mssql-jdbc</artifactId>
+		    <version>12.4.1.jre11</version><!--$NO-MVN-MAN-VER$-->
+		</dependency>
+
 <!--		<dependency>
 			<groupId>com.oracle.ojdbc</groupId>
 			<artifactId>ojdbc10</artifactId>
