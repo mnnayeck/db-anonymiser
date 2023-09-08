@@ -56,44 +56,12 @@ public class AnonymizationServiceImpl implements AnonymisationService {
 		
 		String select = "SELECT "+anonymisation.getPrimaryKey()+"," + anonymisation.getColumnName() + " from " + anonymisation.getTableName();
 		
-		this.databaseJdbcTemplatesList.get(anonymisation.getDatabaseRefId()).query(select, new RowCallbackHandler() {
-			
-			@Override
-			public void processRow(ResultSet rs) throws SQLException {
-				
-				Object value = rs.getObject(anonymisation.getColumnName());
-				Object primaryKey = rs.getObject(anonymisation.getPrimaryKey());
-				if (value == null
-						|| value instanceof String && StringUtils.isBlank((String)value)){
-					return;
-				}
-
-				doAnonymize(anonymisation, primaryKey, value);
-				
-			}
-		});
-	}
-
-	/**
-	 * @param anonymisation
-	 * @param value
-	 * @param value2 
-	 * @return
-	 */
-	protected void doAnonymize(Anonymisation anonymisation, Object primaryKey, Object value) {
-		DataAnonymiserService<Serializable> anonymizer = DataAnonymiserFactory.create(anonymisation.getAnonymiser());
-		if (anonymizer == null) {
-			LOGGER.error("No anonymizer of type {}", anonymisation.getAnonymiser());
-			return;
-		}
-		Serializable anonymized = anonymizer.anonymize((Serializable) value);
-		String updateString = "UPDATE " +anonymisation.getTableName() 
-			+ " set " + anonymisation.getColumnName() + " = '" + anonymized + "'"
-		    + " where "+ anonymisation.getPrimaryKey() + " = '" + primaryKey + "';" 
-			+ System.lineSeparator();
+		RowCallbackHandler rowCallBackHandler = new AnonymisationRowCallbackHandler(anonymisation, sqlStatementDao);
 		
-		this.sqlStatementDao.persist(anonymisation.getDatabaseRefId(), updateString);
+		this.databaseJdbcTemplatesList.get(anonymisation.getDatabaseRefId()).query(select, rowCallBackHandler);
 	}
+
+
 
 	@Override
 	public void updateDb() throws IOException {
@@ -115,9 +83,7 @@ public class AnonymizationServiceImpl implements AnonymisationService {
 			
 			String[] statements = new String[batchSize];
 			
-			linesStream.forEach(line -> {
-//				template.execute(line);
-				
+			linesStream.forEach(line -> {			
 				statements[index[0]++] = line;
 				count[0]++;
 				if (index[0] % batchSize == 0 || count[0] >= totalCount) { //log log after 100 lines

@@ -43,33 +43,14 @@ public abstract class DataAnonymiserService<V extends Serializable> {
 		if (this.isEmpty(source)) {
 			return source;
 		}
-		
-		byte[] serialized = this.serialize(source);
-		byte[] serializedLowerCase = null;
 
-		
-		if (source instanceof String) {
-			String sourceLowerCase = (String) source;
-			if (StringUtils.isNotBlank(sourceLowerCase) ) {
-				serializedLowerCase = this.serialize((V) sourceLowerCase.toLowerCase());
-			}
-		}
-		
-		String key = Base64.encodeBase64String(this.digest.digest(serialized));
-		String keyLowerCase = null;
-		if (serializedLowerCase != null) {
-			keyLowerCase = Base64.encodeBase64String(this.digest.digest(serializedLowerCase));
-		}
+		String key = this.generateKey(source);
 		 
 		V anonymizedValue = (V) cacheManager.retrieveFromCache(key);
 		if (anonymizedValue == null) {
 			anonymizedValue = this.doAnonymize(source);
 			anonymizedValue = this.sanitize(anonymizedValue);
 			cacheManager.putInCache(key, anonymizedValue);
-			if (keyLowerCase != null) {
-				String anonmymisedValueLowerCase = (String) anonymizedValue;
-				cacheManager.putInCache(keyLowerCase, anonmymisedValueLowerCase.toLowerCase());
-			}
 		}
 		
 		return anonymizedValue;
@@ -89,15 +70,23 @@ public abstract class DataAnonymiserService<V extends Serializable> {
 		}
 		return source;
 	}
+	
+	protected String generateKey(V source) {
+		String key = null;
+		if (source instanceof String) {
+			key = (String) source;
+		}
+		else {
+			byte[] serialized = SerializationUtils.serialize(source);
+			byte[] digest = this.digest.digest(serialized);
+			key = Base64.encodeBase64String(digest);
+		}
+		return key;
+	}
 
 
 	protected boolean isEmpty(V source) {
 		return source == null;
-	}
-
-
-	protected byte[] serialize(V source) {
-		return SerializationUtils.serialize(source);
 	}
 
 	protected abstract V doAnonymize(V source) ;

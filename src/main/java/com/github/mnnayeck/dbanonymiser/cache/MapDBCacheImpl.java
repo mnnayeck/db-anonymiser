@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.mapdb.DB;
 import org.mapdb.DBMaker;
 import org.mapdb.HTreeMap;
@@ -51,17 +52,17 @@ public class MapDBCacheImpl extends CacheManager {
 		File workingDir = new File(tmpdir, APP_NAME);
 		if (!workingDir.exists()) {
 			workingDir.mkdirs();
-			LOGGER.info("Created folder {} for storing anonymization data", workingDir.getAbsolutePath());
+			LOGGER.trace("Created folder {} for storing anonymization data", workingDir.getAbsolutePath());
 		} else {
-			LOGGER.info("Folder {} already exists for storing anonymization data", workingDir.getAbsolutePath());
+			LOGGER.trace("Folder {} already exists for storing anonymization data", workingDir.getAbsolutePath());
 		}
 
 		this.databaseFile = new File(workingDir, UUID.randomUUID().toString() + ".db");
 		if (databaseFile.exists()) {
-			LOGGER.info("Database file {} already exists", databaseFile.getAbsolutePath());
+			LOGGER.trace("Database file {} already exists", databaseFile.getAbsolutePath());
 
 		} else {
-			LOGGER.info("Database file {} does not exist. Creating.", databaseFile.getAbsolutePath());
+			LOGGER.trace("Database file {} does not exist. Creating.", databaseFile.getAbsolutePath());
 		}
 		
 		Runtime.getRuntime().addShutdownHook(new Thread ( ) {
@@ -75,7 +76,7 @@ public class MapDBCacheImpl extends CacheManager {
 		this.db = DBMaker.fileDB(databaseFile).make();
 		
 		
-		LOGGER.info("Anonymiser database is {}", databaseFile.getAbsolutePath());
+		LOGGER.trace("Anonymiser database is {}", databaseFile.getAbsolutePath());
 	}
 
 	@Override
@@ -86,7 +87,27 @@ public class MapDBCacheImpl extends CacheManager {
 
 	@Override
 	public Serializable retrieveFromCache(String key) {
-		return this.map.get(key);
+		Serializable object = this.map.get(key);
+		if (object == null) {
+			object = this.map.get(StringUtils.lowerCase(key));
+			if (object != null && object instanceof String) {
+				String value = (String) object;
+				if (StringUtils.isNotBlank(value)) {
+					object = StringUtils.lowerCase(value);
+				}
+			}
+			
+			if (object == null ) {
+				object = this.map.get(StringUtils.upperCase(key));
+				if (object != null && object instanceof String) {
+					String value = (String) object;
+					if (StringUtils.isNotBlank(value)) {
+						object = StringUtils.upperCase(value);
+					}
+				}
+			}
+		}
+		return object;
 	}
 
 	@Override
