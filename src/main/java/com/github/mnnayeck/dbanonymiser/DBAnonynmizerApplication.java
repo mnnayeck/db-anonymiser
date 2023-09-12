@@ -73,7 +73,7 @@ public class DBAnonynmizerApplication {
 			LOGGER.info("Generation of anonymised SQL for table '{}' and column '{}' in {} milliseconds", anonymisation.getTableName(), anonymisation.getColumnName(),  (System.currentTimeMillis() - start));
 		}
 		
-//		anonymisationService.updateDb();
+		anonymisationService.updateDb();
 		LOGGER.info("Total execution time: {} seconds", ((System.currentTimeMillis() - totalStart)/1000));
 		return 0;
 	}

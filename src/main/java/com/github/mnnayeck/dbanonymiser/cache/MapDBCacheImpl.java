@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.WordUtils;
 import org.mapdb.DB;
 import org.mapdb.DBMaker;
 import org.mapdb.HTreeMap;
@@ -103,6 +104,21 @@ public class MapDBCacheImpl extends CacheManager {
 					String value = (String) object;
 					if (StringUtils.isNotBlank(value)) {
 						object = StringUtils.upperCase(value);
+					}
+				}
+			}
+			
+			if (object == null) {
+				object = this.map.get(WordUtils.capitalizeFully(key));
+				if (object != null && object instanceof String) {
+					String value = (String) object;
+					if (StringUtils.isNotBlank(value)) {
+						if (StringUtils.isAllUpperCase(key)) {
+							object = StringUtils.upperCase(value);
+						}
+						else if (StringUtils.isAllLowerCase(key)) {
+							object = StringUtils.lowerCase(value);
+						}
 					}
 				}
 			}

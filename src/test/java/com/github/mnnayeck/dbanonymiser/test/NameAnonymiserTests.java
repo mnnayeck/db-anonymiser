@@ -67,7 +67,7 @@ public class NameAnonymiserTests {
 		String resultLowered = nameAnonymizer.anonymize(namelowered);
 		Assert.assertTrue(StringUtils.equalsIgnoreCase(result, resultLowered));
 		assertConditions(name, result);
-		assertConditions(name, resultLowered);
+		assertConditions(namelowered, resultLowered);
 	}
 	
 	private void assertConditions(String name, String result) {

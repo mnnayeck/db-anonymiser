@@ -31,18 +31,6 @@ public class CacheTests {
 		Assert.assertEquals(TEST_STRING, value);
 		cacheManager.close();
 	}
-	
-//	@Test
-//	public void testOfflineCache() throws Exception {
-//		CacheManager cacheManager = CacheManager.getInstance();
-//		cacheManager.putInCache(KEY, TEST_STRING);
-//		cacheManager.close();
-//		
-//		CacheManager cacheManager2 = CacheManager.getInstance();
-//		Serializable value = cacheManager2.retrieveFromCache(KEY);
-//		Assert.assertEquals(TEST_STRING, value);
-//		cacheManager2.close();
-//		
-//	}
+
 
 }
