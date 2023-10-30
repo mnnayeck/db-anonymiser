@@ -24,5 +24,6 @@ public abstract class Anonymisers {
 	public static final String POST_CODE = "POST_CODE";
 	public static final String STREET_NAME = "STREET_NAME";
 	public static final String ALPHANUM = "ALPHANUM";
+	public static final String LITTERAL = "LITTERAL";
 	
 }

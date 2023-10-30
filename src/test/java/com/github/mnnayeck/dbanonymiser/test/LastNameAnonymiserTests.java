@@ -25,7 +25,7 @@ public class LastNameAnonymiserTests {
 	@Test
 	public void testAnonymizerName1() throws Exception {
 		String name = "EMRITH-NAYECK";
-		String result = nameAnonymizer.anonymize(name);
+		String result = nameAnonymizer.anonymize(name, null);
 		assertConditions(name, result);
 	}
 	

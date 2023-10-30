@@ -15,6 +15,7 @@ import com.github.mnnayeck.dbanonymiser.impl.EmailAnonymiser;
 import com.github.mnnayeck.dbanonymiser.impl.FirstNameAnonymiser;
 import com.github.mnnayeck.dbanonymiser.impl.FullNameAnonymiser;
 import com.github.mnnayeck.dbanonymiser.impl.LastNameAnonymiser;
+import com.github.mnnayeck.dbanonymiser.impl.LitteralValueAnonymiser;
 import com.github.mnnayeck.dbanonymiser.impl.PhoneNumberAnonymiser;
 import com.github.mnnayeck.dbanonymiser.impl.PostCodeAnonymiser;
 import com.github.mnnayeck.dbanonymiser.impl.SimpleNameAnonymiser;
@@ -39,6 +40,7 @@ public abstract class DataAnonymiserFactory {
 	private static final PostCodeAnonymiser POST_CODE_ANONYMIZER = new PostCodeAnonymiser();
 	private static final StreetNameAnonymiser STREET_NAME_ANONYMIZER = new StreetNameAnonymiser();
 	private static final AlphanumericAnonymiser ALPHANUMERIC_ANONYMIZER = new AlphanumericAnonymiser();
+	private static final LitteralValueAnonymiser LITTERAL_VALUE_ANONYMISER = new LitteralValueAnonymiser();
 	
 	private DataAnonymiserFactory() {}
 
@@ -91,6 +93,9 @@ public abstract class DataAnonymiserFactory {
 			break;
 		case Anonymisers.ALPHANUM:
 			dataAnonymiserService = ALPHANUMERIC_ANONYMIZER;
+			break;
+		case Anonymisers.LITTERAL:
+			dataAnonymiserService = LITTERAL_VALUE_ANONYMISER;
 			break;
 		default:
 			break;

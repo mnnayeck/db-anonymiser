@@ -24,7 +24,7 @@ public class AlphanumericAnonymiserTests {
 	@Test
 	public void testAnonymizerIBan() throws Exception {
 		String iban = "FR76 3000 4001 5800 0100 5783 991";
-		String result = anonymizer.anonymize(iban);
+		String result = anonymizer.anonymize(iban, null);
 		assertConditions(iban, result);
 	}
 

@@ -3,6 +3,8 @@
  */
 package com.github.mnnayeck.dbanonymiser.impl;
 
+import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.github.javafaker.Faker;
@@ -18,7 +20,7 @@ public class FullNameAnonymiser extends CompanyNameAnonymiser {
 	private char spaceChar = ' ';
 
 	@Override
-	protected String doAnonymize(String source) {
+	protected String doAnonymize(String source, Map<String, Object> anonymisationConfig) {
 		int nameCount = StringUtils.countMatches(StringUtils.trim(source), ' ');
 		nameCount++;
 		StringBuilder builder = new StringBuilder(100);

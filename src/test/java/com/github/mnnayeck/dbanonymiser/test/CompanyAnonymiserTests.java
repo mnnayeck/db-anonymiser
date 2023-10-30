@@ -24,7 +24,7 @@ public class CompanyAnonymiserTests {
 	@Test
 	public void testAnonymizerCompany1() throws Exception {
 		String name = "GUNNOO";
-		String result = nameAnonymizer.anonymize(name);
+		String result = nameAnonymizer.anonymize(name, null);
 		assertConditions(name, result);
 	}
 	
@@ -32,7 +32,7 @@ public class CompanyAnonymiserTests {
 	@Test
 	public void testAnonymizerCompany2() throws Exception {
 		String name = "INFOR FRANCE SAS";
-		String result = nameAnonymizer.anonymize(name);
+		String result = nameAnonymizer.anonymize(name, null);
 		assertConditions(name, result);
 	}
 	

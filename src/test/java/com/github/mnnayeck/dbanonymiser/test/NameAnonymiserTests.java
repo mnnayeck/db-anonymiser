@@ -25,7 +25,7 @@ public class NameAnonymiserTests {
 	@Test
 	public void testAnonymizerName1() throws Exception {
 		String name = "GUNNOO";
-		String result = nameAnonymizer.anonymize(name);
+		String result = nameAnonymizer.anonymize(name, null);
 		logger.info("Before: {}, After: {}", name, result);
 		Assert.assertNotEquals(name, result);
 		Assert.assertEquals(StringUtils.isAllUpperCase(name), StringUtils.isAllUpperCase(result));
@@ -34,28 +34,28 @@ public class NameAnonymiserTests {
 	@Test
 	public void testAnonymizerName2() throws Exception {
 		String name = "Gunnoo";
-		String result = nameAnonymizer.anonymize(name);
+		String result = nameAnonymizer.anonymize(name, null);
 		assertConditions(name, result);
 	}
 	
 	@Test
 	public void testAnonymizerName3() throws Exception {
 		String name = "TEST TEK TEST MICHEL";
-		String result = nameAnonymizer.anonymize(name);
+		String result = nameAnonymizer.anonymize(name, null);
 		assertConditions(name, result);
 	}
 	
 	@Test
 	public void testAnonymizerName4() throws Exception {
 		String name = "WS CARDONE VALIDITY";
-		String result = nameAnonymizer.anonymize(name);
+		String result = nameAnonymizer.anonymize(name, null);
 		assertConditions(name, result);
 	}
 	
 	@Test
 	public void testAnonymizerName5() throws Exception {
 		String name = "WS CARDONE";
-		String result = nameAnonymizer.anonymize(name);
+		String result = nameAnonymizer.anonymize(name, null);
 		assertConditions(name, result);
 	}
 	
@@ -63,8 +63,8 @@ public class NameAnonymiserTests {
 	public void testAnonymizerName6() throws Exception {
 		String name = "Will Smith";
 		String namelowered = "will smith";
-		String result = nameAnonymizer.anonymize(name);
-		String resultLowered = nameAnonymizer.anonymize(namelowered);
+		String result = nameAnonymizer.anonymize(name, null);
+		String resultLowered = nameAnonymizer.anonymize(namelowered, null);
 		Assert.assertTrue(StringUtils.equalsIgnoreCase(result, resultLowered));
 		assertConditions(name, result);
 		assertConditions(namelowered, resultLowered);

@@ -88,42 +88,7 @@ public class MapDBCacheImpl extends CacheManager {
 
 	@Override
 	public Serializable retrieveFromCache(String key) {
-		Serializable object = this.map.get(key);
-		if (object == null) {
-			object = this.map.get(StringUtils.lowerCase(key));
-			if (object != null && object instanceof String) {
-				String value = (String) object;
-				if (StringUtils.isNotBlank(value)) {
-					object = StringUtils.lowerCase(value);
-				}
-			}
-			
-			if (object == null ) {
-				object = this.map.get(StringUtils.upperCase(key));
-				if (object != null && object instanceof String) {
-					String value = (String) object;
-					if (StringUtils.isNotBlank(value)) {
-						object = StringUtils.upperCase(value);
-					}
-				}
-			}
-			
-			if (object == null) {
-				object = this.map.get(WordUtils.capitalizeFully(key));
-				if (object != null && object instanceof String) {
-					String value = (String) object;
-					if (StringUtils.isNotBlank(value)) {
-						if (StringUtils.isAllUpperCase(key)) {
-							object = StringUtils.upperCase(value);
-						}
-						else if (StringUtils.isAllLowerCase(key)) {
-							object = StringUtils.lowerCase(value);
-						}
-					}
-				}
-			}
-		}
-		return object;
+		return this.map.get(key);
 	}
 
 	@Override

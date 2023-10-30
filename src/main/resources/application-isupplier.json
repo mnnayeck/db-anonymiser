@@ -3,86 +3,72 @@
 		{
 			"refId": "isupplier_db_activity",
 			"driverClassName": "org.postgresql.Driver",
-			"url": "jdbc:postgresql://localhost:5432/db_activity_report",
+			"url": "jdbc:postgresql://localhost:5434/db_activity_report",
 			"username": "postgres",
-			"password": "mysecretpassword"
+			"password": "2pHr8RrQ7XvCAXFaudTE0DJTGvHj1N9t"
 		},
 		{
 			"refId": "isupplier_db_contract",
 			"driverClassName": "org.postgresql.Driver",
-			"url": "jdbc:postgresql://localhost:5432/db_contract",
+			"url": "jdbc:postgresql://localhost:5434/db_contract",
 			"username": "postgres",
-			"password": "mysecretpassword"
+			"password": "2pHr8RrQ7XvCAXFaudTE0DJTGvHj1N9t"
 		},
 		{
 			"refId": "isupplier_db_enterprise",
 			"driverClassName": "org.postgresql.Driver",
-			"url": "jdbc:postgresql://localhost:5432/db_enterprise",
+			"url": "jdbc:postgresql://localhost:5434/db_enterprise",
 			"username": "postgres",
-			"password": "mysecretpassword"
+			"password": "2pHr8RrQ7XvCAXFaudTE0DJTGvHj1N9t"
 		},
 		{
 			"refId": "isupplier_db_invoice",
 			"driverClassName": "org.postgresql.Driver",
-			"url": "jdbc:postgresql://localhost:5432/db_invoice",
+			"url": "jdbc:postgresql://localhost:5434/db_invoice",
 			"username": "postgres",
-			"password": "mysecretpassword"
+			"password": "2pHr8RrQ7XvCAXFaudTE0DJTGvHj1N9t"
 		},
 		{
 			"refId": "isupplier_db_legal_documents",
 			"driverClassName": "org.postgresql.Driver",
-			"url": "jdbc:postgresql://localhost:5432/db_legal_documents",
+			"url": "jdbc:postgresql://localhost:5434/db_legal_documents",
 			"username": "postgres",
-			"password": "mysecretpassword"
+			"password": "2pHr8RrQ7XvCAXFaudTE0DJTGvHj1N9t"
 		},
 		{
 			"refId": "isupplier_db_mailing",
 			"driverClassName": "org.postgresql.Driver",
-			"url": "jdbc:postgresql://localhost:5432/db_mailing",
+			"url": "jdbc:postgresql://localhost:5434/db_mailing",
 			"username": "postgres",
-			"password": "mysecretpassword"
+			"password": "2pHr8RrQ7XvCAXFaudTE0DJTGvHj1N9t"
 		},
 		{
 			"refId": "isupplier_db_marketplace",
 			"driverClassName": "org.postgresql.Driver",
-			"url": "jdbc:postgresql://localhost:5432/db_marketplace",
+			"url": "jdbc:postgresql://localhost:5434/db_marketplace",
 			"username": "postgres",
-			"password": "mysecretpassword"
+			"password": "2pHr8RrQ7XvCAXFaudTE0DJTGvHj1N9t"
 		},
 		{
 			"refId": "isupplier_db_purchase_order",
 			"driverClassName": "org.postgresql.Driver",
-			"url": "jdbc:postgresql://localhost:5432/db_purchase_order",
+			"url": "jdbc:postgresql://localhost:5434/db_purchase_order",
 			"username": "postgres",
-			"password": "mysecretpassword"
+			"password": "2pHr8RrQ7XvCAXFaudTE0DJTGvHj1N9t"
 		},
 		{
 			"refId": "isupplier_db_request",
 			"driverClassName": "org.postgresql.Driver",
-			"url": "jdbc:postgresql://localhost:5432/db_request",
+			"url": "jdbc:postgresql://localhost:5434/db_request",
 			"username": "postgres",
-			"password": "mysecretpassword"
+			"password": "2pHr8RrQ7XvCAXFaudTE0DJTGvHj1N9t"
 		},
 		{
 			"refId": "isupplier_db_uaa",
 			"driverClassName": "org.postgresql.Driver",
-			"url": "jdbc:postgresql://localhost:5432/db_uaa",
+			"url": "jdbc:postgresql://localhost:5434/db_uaa",
 			"username": "postgres",
-			"password": "mysecretpassword"
-		}
-	],
-	"exclusions" : [
-		{
-			"value": "ACENSI",
-			"exclusionType": "CONTAINS_IGNORE_CASE",
-			"targetTables": [],
-			"exclusionApplicationType": "ENTIRE_ROW"
-		},
-		{
-			"value": "ISUPPLIER",
-			"exclusionType": "CONTAINS_IGNORE_CASE",
-			"targetTables": [],
-			"exclusionApplicationType": "ENTIRE_ROW"
+			"password": "2pHr8RrQ7XvCAXFaudTE0DJTGvHj1N9t"
 		}
 	],
 	"anonymisations": [
@@ -267,10 +253,14 @@
 			"columnName": "validated_by",
 			"anonymiser": "SIMPLE_NAME",
 			"databaseRefId": "isupplier_db_contract"
-		}
-		
-		
-		,
+		},
+		{
+			"tableName": "tag_entity",
+			"primaryKey": "id",
+			"columnName": "name",
+			"anonymiser": "COMPANY_NAME",
+			"databaseRefId": "isupplier_db_enterprise"
+		},
 		{
 			"tableName": "company",
 			"primaryKey": "id",
@@ -1219,6 +1209,16 @@
 			"primaryKey": "id",
 			"columnName": "email",
 			"anonymiser": "EMAIL",
+			"unique": true,
+			"databaseRefId": "isupplier_db_uaa"
+		},
+		{
+			"tableName": "is_user",
+			"primaryKey": "id",
+			"columnName": "password_hash",
+			"anonymiser": "LITTERAL",
+			"litteralValue": "$2a$10$0zLteG10W7SG1ErzZWhw2.4klgz4bA7Ndw/sN4z1CGvmjCpdz91Dq",
+			"unique": true,
 			"databaseRefId": "isupplier_db_uaa"
 		},
 		{

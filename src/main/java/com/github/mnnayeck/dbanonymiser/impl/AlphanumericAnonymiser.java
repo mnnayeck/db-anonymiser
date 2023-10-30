@@ -3,6 +3,8 @@
  */
 package com.github.mnnayeck.dbanonymiser.impl;
 
+import java.util.Map;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -17,7 +19,7 @@ public class AlphanumericAnonymiser extends DataAnonymiserService<String> {
 	private static final String SPACE_CHAR = " ";
 
 	@Override
-	protected String doAnonymize(String source) {
+	protected String doAnonymize(String source, Map<String, Object> anonymisationConfig) {
 		
 		StringBuilder builder = new StringBuilder(source.length());
 		

@@ -10,6 +10,7 @@ package com.github.mnnayeck.dbanonymiser.service;
 
 import java.io.Serializable;
 import java.security.MessageDigest;
+import java.util.Map;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -35,10 +36,11 @@ public abstract class DataAnonymiserService<V extends Serializable> {
 	 * Takes as parameter the string to anonymize.
 	 * Returns the anonymised data
 	 * @param source
+	 * @param anonymisationConfig 
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public V anonymize(V source) {
+	public V anonymize(V source, Map<String, Object> anonymisationConfig) {
 		
 		if (this.isEmpty(source)) {
 			return source;
@@ -48,7 +50,7 @@ public abstract class DataAnonymiserService<V extends Serializable> {
 		 
 		V anonymizedValue = (V) cacheManager.retrieveFromCache(key);
 		if (anonymizedValue == null) {
-			anonymizedValue = this.doAnonymize(source);
+			anonymizedValue = this.doAnonymize(source, anonymisationConfig);
 			anonymizedValue = this.sanitize(anonymizedValue);
 			cacheManager.putInCache(key, anonymizedValue);
 		}
@@ -89,6 +91,6 @@ public abstract class DataAnonymiserService<V extends Serializable> {
 		return source == null;
 	}
 
-	protected abstract V doAnonymize(V source) ;
+	protected abstract V doAnonymize(V source, Map<String, Object> anonymisationConfig) ;
 
 }

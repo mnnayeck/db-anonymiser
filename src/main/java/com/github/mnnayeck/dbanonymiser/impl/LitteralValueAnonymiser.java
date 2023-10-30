@@ -3,6 +3,8 @@
  */
 package com.github.mnnayeck.dbanonymiser.impl;
 
+import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.github.mnnayeck.dbanonymiser.service.DataAnonymiserService;
@@ -14,9 +16,11 @@ import com.github.mnnayeck.dbanonymiser.service.DataAnonymiserService;
 public class LitteralValueAnonymiser extends DataAnonymiserService<String> {
 	
 
+	public static final String LITTERAL_VALUE = "LITTERAL_VALUE";
+
 	@Override
-	protected String doAnonymize(String source) {
-		return null;
+	protected String doAnonymize(String source, Map<String, Object> anonymisationConfig) {
+		return (String) anonymisationConfig.get(LITTERAL_VALUE);
 	}
 
 	@Override

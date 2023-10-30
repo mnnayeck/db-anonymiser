@@ -24,7 +24,7 @@ public class EmailAnonymiserTests {
 	@Test
 	public void testAnonymizerEmail1() throws Exception {
 		String name = "nadeem.m.nayeck@gmail.com";
-		String result = anonymizer.anonymize(name);
+		String result = anonymizer.anonymize(name, null);
 		assertConditions(name, result);
 	}
 	
@@ -33,14 +33,14 @@ public class EmailAnonymiserTests {
 	@Test
 	public void testAnonymizerEmail2() throws Exception {
 		String name = "mohammad.nayeck@icps.mu";
-		String result = anonymizer.anonymize(name);
+		String result = anonymizer.anonymize(name, null);
 		assertConditions(name, result);
 	}
 	
 	@Test
 	public void testAnonymizerEmail3() throws Exception {
 		String name = "tamas.varga@isupplier.fr";
-		String result = anonymizer.anonymize(name);
+		String result = anonymizer.anonymize(name, null);
 		assertConditions(name, result);
 	}
 	

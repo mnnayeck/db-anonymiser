@@ -3,6 +3,8 @@
  */
 package com.github.mnnayeck.dbanonymiser.impl;
 
+import java.util.Map;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -17,7 +19,7 @@ public class CreditCardAnonymiser extends DataAnonymiserService<String> {
 	private int binLength=8;
 
 	@Override
-	protected String doAnonymize(String source) {
+	protected String doAnonymize(String source, Map<String, Object> anonymisationConfig) {
 		
 		//append the BIN to the final result
 		StringBuilder builder = new StringBuilder(source.length());

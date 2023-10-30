@@ -6,8 +6,11 @@ package com.github.mnnayeck.dbanonymiser.service;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.checkerframework.checker.units.qual.K;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowCallbackHandler;
@@ -15,6 +18,7 @@ import org.springframework.jdbc.core.RowCallbackHandler;
 import com.github.mnnayeck.dbanonymiser.bean.Anonymisation;
 import com.github.mnnayeck.dbanonymiser.bean.DataAnonymiserFactory;
 import com.github.mnnayeck.dbanonymiser.dao.SqlStatementDao;
+import com.github.mnnayeck.dbanonymiser.impl.LitteralValueAnonymiser;
 
 /**
  * 
@@ -22,6 +26,7 @@ import com.github.mnnayeck.dbanonymiser.dao.SqlStatementDao;
 public class AnonymisationRowCallbackHandler implements RowCallbackHandler {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(AnonymisationRowCallbackHandler.class);
+	
 
 	private Anonymisation anonymisation;
 	private SqlStatementDao sqlStatementDao;
@@ -56,7 +61,11 @@ public class AnonymisationRowCallbackHandler implements RowCallbackHandler {
 			LOGGER.error("No anonymizer of type {}", anonymisation.getAnonymiser());
 			return;
 		}
-		Serializable anonymized = anonymizer.anonymize((Serializable) value);
+		Map<String, Object> anonymisationConfig = new HashMap<>();
+		if (anonymizer.getClass().getName().equals(LitteralValueAnonymiser.class.getName())) {
+			anonymisationConfig.put(LitteralValueAnonymiser.LITTERAL_VALUE, anonymisation.getLitteralValue());
+		}
+		Serializable anonymized = anonymizer.anonymize((Serializable) value, anonymisationConfig);
 		String updateString = "UPDATE " +anonymisation.getTableName() 
 			+ " set " + anonymisation.getColumnName() + " = '" + anonymized + "'"
 		    + " where "+ anonymisation.getPrimaryKey() + " = " + this.getPrimaryKey(primaryKey) + ";" 

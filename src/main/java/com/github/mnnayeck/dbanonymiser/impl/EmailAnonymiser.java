@@ -4,6 +4,7 @@
 package com.github.mnnayeck.dbanonymiser.impl;
 
 import java.util.Locale;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -18,13 +19,13 @@ import com.github.mnnayeck.dbanonymiser.service.DataAnonymiserService;
 public class EmailAnonymiser extends DataAnonymiserService<String> {
 	
 	private FakeValuesService fakeValuesService = new FakeValuesService(Locale.ENGLISH, new RandomService());
-	private static final String ALPHA_REGEX = "?????";
+	private static final String ALPHA_REGEX = "?????????????";
 	private static final String NUMERIC_REGEX = "###";
-	private static final String DNS = "@doesnotexist.com";
+	private static final String DNS = "@?????.com";
 	
 
 	@Override
-	protected String doAnonymize(String source) {
+	protected String doAnonymize(String source, Map<String, Object> anonymisationConfig) {
 		String anonymised = fakeValuesService.bothify(ALPHA_REGEX + NUMERIC_REGEX + DNS);
 		if (StringUtils.isAllLowerCase(source)) {
 			anonymised = anonymised.toLowerCase();

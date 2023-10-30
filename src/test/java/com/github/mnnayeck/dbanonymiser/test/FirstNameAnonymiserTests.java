@@ -25,14 +25,14 @@ public class FirstNameAnonymiserTests {
 	@Test
 	public void testAnonymizerName1() throws Exception {
 		String name = "JeanMichel";
-		String result = nameAnonymizer.anonymize(name);
+		String result = nameAnonymizer.anonymize(name, null);
 		assertConditions(name, result);
 	}
 	
 	@Test
 	public void testAnonymizerName2() throws Exception {
 		String name = "Jean-Michel";
-		String result = nameAnonymizer.anonymize(name);
+		String result = nameAnonymizer.anonymize(name, null);
 		assertConditions(name, result);
 	}
 	

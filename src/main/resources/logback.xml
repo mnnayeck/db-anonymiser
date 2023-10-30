@@ -30,7 +30,8 @@
 	<logger name="ch.qos.logback" level="warn" />
 	<logger name="com.microsoft.sqlserver.jdbc.internals.TDS.Channel" level="error" />
 	
-	<root level="WARN">
+	
+	<root level="DEBUG">
 		<appender-ref ref="FILE-ROLLING"/>
 		<appender-ref ref="CONSOLE"/>
 	</root>

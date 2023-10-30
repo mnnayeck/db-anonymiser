@@ -16,6 +16,8 @@ public class Anonymisation implements Comparable<Anonymisation> {
 	private String columnName;
 	private String anonymiser;
 	private String databaseRefId;
+	private boolean unique = false;
+	private String litteralValue = null;
 
 	/**
 	 * @return the tableName
@@ -115,6 +117,22 @@ public class Anonymisation implements Comparable<Anonymisation> {
 	@Override
 	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this, false);
+	}
+
+	public boolean isUnique() {
+		return unique;
+	}
+
+	public void setUnique(boolean unique) {
+		this.unique = unique;
+	}
+
+	public String getLitteralValue() {
+		return litteralValue;
+	}
+
+	public void setLitteralValue(String litteralValue) {
+		this.litteralValue = litteralValue;
 	}
 
 }

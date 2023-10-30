@@ -50,7 +50,7 @@ public class DBAnonynmizerApplication {
 		
 		long totalStart = System.currentTimeMillis();
 		
-		Resource resource = new ClassPathResource("application.json");
+		Resource resource = new ClassPathResource("application-isupplier.json");
 		Configuration configuration = ConfigurationManager.getInstance(resource);
 		List<Database> databases = configuration.getDatabases();
 		

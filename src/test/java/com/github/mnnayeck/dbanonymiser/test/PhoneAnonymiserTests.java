@@ -26,28 +26,28 @@ public class PhoneAnonymiserTests {
 	@Test
 	public void testAnonymizerName1() throws Exception {
 		String phone = "+23057584228";
-		String result = phoneAnonymizer.anonymize(phone);
+		String result = phoneAnonymizer.anonymize(phone, null);
 		assertConditions(phone, result);
 	}
 	
 	@Test
 	public void testAnonymizerName2() throws Exception {
 		String phone = "+23057584228";
-		String result = phoneAnonymizer.anonymize(phone);
+		String result = phoneAnonymizer.anonymize(phone, null);
 		Assert.assertEquals("+23050000000", result);
 	}
 	
 	@Test
 	public void testAnonymizerName3() throws Exception {
 		String phone = "23057584228";
-		String result = phoneAnonymizer.anonymize(phone);
+		String result = phoneAnonymizer.anonymize(phone, null);
 		Assert.assertEquals("23057000000", result);
 	}
 	
 	@Test
 	public void testAnonymizerName4() throws Exception {
 		String phone = "230-57584228";
-		String result = phoneAnonymizer.anonymize(phone);
+		String result = phoneAnonymizer.anonymize(phone, null);
 		Assert.assertEquals("230-50000000", result);
 	}
 	
