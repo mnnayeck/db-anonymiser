@@ -1,5 +1,4 @@
-
-
+---------------------------------------------------------------------
      _ _                                             _               
     | | |                                           (_)              
   __| | |__   __ _ _ __   ___  _ __  _   _ _ __ ___  _ ___  ___ _ __ 
@@ -9,6 +8,8 @@
                                       __/ |                          
                                      |___/                           
 
-${application.title} Version ${application.formatted-version}
-Github: https://github.com/mnnayeck/db-anonymiser.git
-Built on Spring Boot
+---------------------------------------------------------------------
+Version ${application.version}
+---------------------------------------------------------------------
+Powered by Spring Boot ${spring-boot.version}
+---------------------------------------------------------------------

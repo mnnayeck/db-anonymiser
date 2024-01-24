@@ -3,18 +3,20 @@
  */
 package com.github.mnnayeck.dbanonymiser;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.time.DurationFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
@@ -29,16 +31,27 @@ import com.github.mnnayeck.dbanonymiser.service.AnonymizationServiceImpl;
  * @author Nadeem
  *
  */
-@SpringBootApplication
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class DBAnonynmizerApplication {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(DBAnonynmizerApplication.class);
 	
 	public static void main(String[] args) throws IOException {
 		
+		if (args == null || args.length == 0) {
+			LOGGER.error("You must specify a json file as argument");
+			System.exit(-1);
+		}
+
+		File file = new File(args[0]);
+		if (!file.exists()) {
+			LOGGER.error("Resource {} does not exist", file.getAbsolutePath());
+			System.exit(-1);
+		}
+		
 		ApplicationContext context = SpringApplication.run(DBAnonynmizerApplication.class, args);
 		DBAnonynmizerApplication application = context.getBean(DBAnonynmizerApplication.class);
-		application.run();
+		application.run(file);
 	}
 
 
@@ -46,11 +59,11 @@ public class DBAnonynmizerApplication {
 	 * @param args
 	 * @throws IOException 
 	 */
-	int run() throws IOException {
+	int run(File file) throws IOException {
 		
 		long totalStart = System.currentTimeMillis();
 		
-		Resource resource = new ClassPathResource("application-isupplier.json");
+		Resource resource = new FileSystemResource(file);
 		Configuration configuration = ConfigurationManager.getInstance(resource);
 		List<Database> databases = configuration.getDatabases();
 		
@@ -70,11 +83,15 @@ public class DBAnonynmizerApplication {
 				LOGGER.info("Treating entry {}", anonymisation);
 			}
 			anonymisationService.anonymize(anonymisation);
-			LOGGER.info("Generation of anonymised SQL for table '{}' and column '{}' in {} milliseconds", anonymisation.getTableName(), anonymisation.getColumnName(),  (System.currentTimeMillis() - start));
+			if (LOGGER.isInfoEnabled()) {
+				LOGGER.info("Generation of anonymised SQL for table '{}' and column '{}' in {}", anonymisation.getTableName(), anonymisation.getColumnName(),  DurationFormatUtils.formatDurationWords((System.currentTimeMillis() - start), true, true));
+			}
 		}
 		
 		anonymisationService.updateDb();
-		LOGGER.info("Total execution time: {} seconds", ((System.currentTimeMillis() - totalStart)/1000));
+		if (LOGGER.isInfoEnabled()) {
+			LOGGER.info("Total execution time: {} seconds", (DurationFormatUtils.formatDurationWords((System.currentTimeMillis() - totalStart), true, true)));
+		}
 		return 0;
 	}
 

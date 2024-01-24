@@ -36,11 +36,11 @@ public class AlphanumericAnonymiser extends DataAnonymiserService<String> {
 	 */
 	private String extracted(String source) {
 		String result = null;
-		if (StringUtils.isAlpha(source)) {
+		if (StringUtils.isAlpha(StringUtils.remove(source, " "))) {
 			result = RandomStringUtils.randomAlphabetic(source.length());
-		} else if (StringUtils.isNumeric(source)) {
+		} else if (StringUtils.isNumeric(StringUtils.remove(source, " "))) {
 			result =  RandomStringUtils.randomNumeric(source.length());
-		} else if (StringUtils.isAlphanumeric(source)) {
+		} else if (StringUtils.isAlphanumeric(StringUtils.remove(source, " "))) {
 			result =  RandomStringUtils.randomAlphanumeric(source.length());
 		} else {
 			result =  RandomStringUtils.randomAlphanumeric(source.length());

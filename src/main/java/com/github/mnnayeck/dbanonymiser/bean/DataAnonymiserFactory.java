@@ -5,6 +5,8 @@ package com.github.mnnayeck.dbanonymiser.bean;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.github.mnnayeck.dbanonymiser.impl.AlphanumericAnonymiser;
 import com.github.mnnayeck.dbanonymiser.impl.Anonymisers;
 import com.github.mnnayeck.dbanonymiser.impl.CityNameAnonymser;
@@ -42,6 +44,8 @@ public abstract class DataAnonymiserFactory {
 	private static final AlphanumericAnonymiser ALPHANUMERIC_ANONYMIZER = new AlphanumericAnonymiser();
 	private static final LitteralValueAnonymiser LITTERAL_VALUE_ANONYMISER = new LitteralValueAnonymiser();
 	
+//	private static final String SPLITTER = ":";
+	
 	private DataAnonymiserFactory() {}
 
 	/**
@@ -51,6 +55,10 @@ public abstract class DataAnonymiserFactory {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static DataAnonymiserService<Serializable> create(String anonymizer) {
 		
+//		if (StringUtils.contains(anonymizer, SPLITTER)) {
+//			String[] splits = StringUtils.split(anonymizer, SPLITTER);
+//			
+//		}
 		
 		DataAnonymiserService dataAnonymiserService = null;
 		
