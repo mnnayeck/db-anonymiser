@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.mnnayeck.dbanonymiser.bean.Configuration;
 
@@ -30,6 +31,7 @@ public class JsonConfigurationManagerImpl extends ConfigurationManager {
 	
 	protected Configuration load()  {
 		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
 		try {
 			
 			return objectMapper.readValue(this.configFile.getInputStream(), Configuration.class);
