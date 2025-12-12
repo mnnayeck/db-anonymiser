@@ -1,5 +1,5 @@
 # db-anonymiser
-Database data anonymiser based on RGPD rules
+Database data anonymiser based on GDPR rules
 
 Prerequisites:
 - Java 17
