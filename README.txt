@@ -5,7 +5,7 @@ Prerequisites:
 - Java 17
 - The jar file of the dbanonymiser
 - a config file in JSON format to anonymise the database
-- Supported databases: MS SQL Server, PostgreSQL, Oracle (untested)
+- Supported databases: MS SQL Server, PostgreSQL, Oracle
 
 To run the program, you have to launch it with a JSON file as argument. 
 
