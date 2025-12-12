@@ -20,16 +20,16 @@ This JSON file will contain basically two sections:
 Example:
 	"databases": [
 		{
-			"refId": "maccs_Bunkering_V2_staging",
+			"refId": "myuniqueRefId1",
 			"driverClassName": "com.microsoft.sqlserver.jdbc.SQLServerDriver",
-			"url": "jdbc:sqlserver://;serverName=sql01.stgmaccs.oci.ldn.com;databaseName=Bunkering_V2;encrypt=true;trustServerCertificate=true",
+			"url": "jdbc:sqlserver://;serverName=myservername1;databaseName=mydatabasename1;encrypt=true;trustServerCertificate=true",
 			"username": "test",
 			"password": "test"
 		},
 		{
-			"refId": "maccs_ASPNETDB_staging",
+			"refId": "myuniqueRefId2",
 			"driverClassName": "com.microsoft.sqlserver.jdbc.SQLServerDriver",
-			"url": "jdbc:sqlserver://;serverName=sql01.stgmaccs.oci.ldn.com;databaseName=ASPNETDB;encrypt=true;trustServerCertificate=true",
+			"url": "jdbc:sqlserver://;serverName=myservername2;databaseName=mydatabasename2;encrypt=true;trustServerCertificate=true",
 			"username": "test",
 			"password": "test"
 		}
@@ -42,18 +42,18 @@ The refId element is important and must be unique for each datasource.
 
 Example:
 		{
-			"tableName": "Bunkering_Request",
-			"primaryKey": "Request_ID",
-			"columnName": "Ship_Name",
+			"tableName": "Table1",
+			"primaryKey": "id",
+			"columnName": "column1",
 			"anonymiser": "COMPANY_NAME",
-			"databaseRefId": "maccs_Bunkering_V2_staging"
+			"databaseRefId": "myuniqueRefId1"
 		},
 		{
-			"tableName": "Bunkering_Request",
-			"primaryKey": "Request_ID",
-			"columnName": "IMO_No",
+			"tableName": "Table2",
+			"primaryKey": "myId",
+			"columnName": "column2",
 			"anonymiser": "ALPHANUM",
-			"databaseRefId": "maccs_Bunkering_V2_staging"
+			"databaseRefId": "myuniqueRefId2"
 		},
 		...
 		
@@ -84,7 +84,7 @@ Explanation:
 			"columnName": "BRN",
 			"anonymiser": "LITTERAL",
 			"litteralValue": "00000",
-			"databaseRefId": "maccs_ASPNETDB_staging"
+			"databaseRefId": "myuniqueRefId2"
 		},
     
 That's it.
