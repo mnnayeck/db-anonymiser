@@ -41,21 +41,81 @@ The refId element is important and must be unique for each datasource.
 2) Anonymisation rules
 
 Example:
-		{
-			"tableName": "Table1",
-			"primaryKey": "id",
-			"columnName": "column1",
-			"anonymiser": "COMPANY_NAME",
-			"databaseRefId": "myuniqueRefId1"
-		},
-		{
-			"tableName": "Table2",
-			"primaryKey": "myId",
-			"columnName": "column2",
-			"anonymiser": "ALPHANUM",
-			"databaseRefId": "myuniqueRefId2"
-		},
-		...
+   "anonymisations": [{
+            "tableName": "activity_sheet_entity",
+            "columnName": "created_by",
+            "anonymiser": "SIMPLE_NAME",
+            "databaseRefId": "isupplier_db_activity"
+        },
+        {
+            "tableName": "activity_sheet_entity",
+            "columnName": "modified_by",
+            "anonymiser": "SIMPLE_NAME",
+            "databaseRefId": "isupplier_db_activity"
+        },
+        {
+            "tableName": "activity_sheet_entity",
+            "columnName": "buyer_company_name",
+            "anonymiser": "COMPANY_NAME",
+            "databaseRefId": "isupplier_db_activity"
+        },
+        {
+            "tableName": "activity_sheet_entity",
+            "columnName": "supplier_company_name",
+            "anonymiser": "COMPANY_NAME",
+            "databaseRefId": "isupplier_db_activity"
+        },
+        {
+            "tableName": "activity_sheet_entity",
+            "columnName": "employee_name",
+            "anonymiser": "FULL_NAME",
+            "databaseRefId": "isupplier_db_activity"
+        },
+        {
+            "tableName": "activity_sheet_entity",
+            "columnName": "supplier_email",
+            "anonymiser": "EMAIL",
+            "databaseRefId": "isupplier_db_activity"
+        },
+        {
+            "tableName": "activity_sheet_entity",
+            "columnName": "employee_email",
+            "anonymiser": "EMAIL",
+            "databaseRefId": "isupplier_db_activity"
+        },
+        {
+            "tableName": "activity_sheet_entity",
+            "columnName": "project_manager_email",
+            "anonymiser": "EMAIL",
+            "databaseRefId": "isupplier_db_activity"
+        },
+        {
+            "tableName": "contract_entity",
+            "columnName": "created_by",
+            "anonymiser": "SIMPLE_NAME",
+            "databaseRefId": "isupplier_db_contract"
+        },
+        {
+            "tableName": "contract_entity",
+            "columnName": "modified_by",
+            "anonymiser": "SIMPLE_NAME",
+            "databaseRefId": "isupplier_db_contract"
+        },
+        {
+            "tableName": "contract_entity",
+            "columnName": "buyer_name",
+            "anonymiser": "COMPANY_NAME",
+            "databaseRefId": "isupplier_db_contract"
+        },
+        {
+            "tableName": "contract_entity",
+            "columnName": "sent_to",
+            "anonymiser": "EMAIL",
+            "databaseRefId": "isupplier_db_contract"
+        }
+        ...
+    ],
+		
 		
 Explanation:
 - table name: the table name you want to anonymize
